@@ -108,7 +108,7 @@ public class SDMShopCommands {
     }
 
 
-    private static int pay(CommandSourceStack source, ServerPlayer from, ServerPlayer to, long money) {
+    private static int pay(CommandSourceStack source, ServerPlayer from, ServerPlayer to, double money) {
         if(from.getUUID().equals(to.getUUID())) {
             source.sendFailure(Component.literal("You can't send money to yourself"));
             return 1;
@@ -123,7 +123,7 @@ public class SDMShopCommands {
         return 1;
     }
 
-    private static int set(CommandSourceStack source, Collection<ServerPlayer> players, long money) {
+    private static int set(CommandSourceStack source, Collection<ServerPlayer> players, double money) {
         for (ServerPlayer player : players) {
             SDMShopR.setMoney(player, money);
             source.sendSuccess(() -> Component.literal(player.getScoreboardName() + ": ").append(SDMShopRework.moneyString(money)), false);
@@ -132,7 +132,7 @@ public class SDMShopCommands {
         return players.size();
     }
 
-    private static int add(CommandSourceStack source, Collection<ServerPlayer> players, long money) {
+    private static int add(CommandSourceStack source, Collection<ServerPlayer> players, double money) {
         if (money == 0L) {
             return 0;
         }
